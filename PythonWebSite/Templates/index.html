@@ -1,0 +1,168 @@
+{% extends 'layout.html' %}
+
+{%block content%}
+<span class="notelist">
+	{%for j in range(0,5)%}
+	<div>
+		{%for i in range(j*3,j*3+3)%}
+		<div onclick="loadmodal({{i}})" class='note'>
+			{%for note in notes%}
+			{%if i == note.spotnum|int%}
+			<table>
+				<tr>
+					<th>Parking ID</th>
+				</tr>
+				<tr>
+					<td>{{note.spotnum }}</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Liscense Plate</th>
+				</tr>
+				<tr>
+					<td>{{note.lnum }}</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Phone Number</th>
+				</tr>
+				<tr>
+					<td>{{note.pnum}}</td>
+				</tr>
+			</table>
+			{%endif%}
+			{%endfor%}
+		</div>
+		{%endfor%}
+	</div>
+	{%endfor%}
+</span>
+<div class="notelistright">
+	{%for i in range(23,33)%}
+	<div onclick="loadmodal({{i}})" class='noteright'>
+		{%for note in notes%}
+		{%if i == note.spotnum|int%}
+		<table>
+			<tr>
+				<th>Parking ID</th>
+			</tr>
+			<tr>
+				<td>{{note.spotnum }}</td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Liscense Plate</th>
+			</tr>
+			<tr>
+				<td>{{note.lnum }}</td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Phone Number</th>
+			</tr>
+			<tr>
+				<td>{{note.pnum}}</td>
+			</tr>
+		</table>
+		{%endif%}
+		{%endfor%}
+	</div>
+	{%endfor%}
+</div>
+<div class="notelist">
+	{%for j in range(8,12)%}
+	<div>
+		{%for i in range(j*2,j*2+2)%}
+		<div onclick="loadmodal({{i-1}})" class='note'>
+			{%for note in notes%}
+			{%if i-1 == note.spotnum|int%}
+			<table>
+				<tr>
+					<th>Parking ID</th>
+				</tr>
+				<tr>
+					<td>{{note.spotnum }}</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Liscense Plate</th>
+				</tr>
+				<tr>
+					<td>{{note.lnum }}</td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				<tr>
+					<th>Phone Number</th>
+				</tr>
+				<tr>
+					<td>{{note.pnum}}</td>
+				</tr>
+			</table>
+			{%endif%}
+			{%endfor%}
+		</div>
+		{%endfor%}
+	</div>
+	{%endfor%}
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>
+		<form method="POST" class='createnote'>
+		<table>
+			<tr>
+				<td>
+					<label for='parkingid'>Parking ID</label>
+				</td>
+				<td>
+					<input id='parkingid' name='parkingid' readonly="true"></input>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="notetext">Liscense plate</label>
+				</td>
+				<td>
+					<input type="text" name="notetext" id="notetext">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label for="phonenumber">Phone Number</label>
+				</td>
+				<td>
+					<input type="text" name="phonenumber" id="phonenumber">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+				</td>
+				<td>
+					<input class='submitbutton' type="submit" name="createnote" value="Save">
+				</td>
+			</tr>
+
+		</table>		
+		
+		</form>
+</div>
+
+</div>
+{% endblock %}

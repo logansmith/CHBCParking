@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" 
+	href="{{ url_for('static', 
+	filename='css/style.css') }}">
+	<script type="text/javascript" src="{{ url_for('static', 
+	filename='js/javascript.js') }}"></script>	
+
+	<title>CHBC Parking App</title>
+</head>
+<body>
+
+<nav class="navbar">
+	<ul class="left">
+		<li><a href="#">CHBC Parking App</a></li>
+	</ul>
+	<ul class="right">
+		<li>
+		<a href="/">Large Lot</a>
+		</li>
+		<li>
+		<a href="/createnote">Small Lot</a>
+		</li>
+		<li>
+			<p id='date' name='date'></p>
+		</li>
+	</ul>
+
+</nav>
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
