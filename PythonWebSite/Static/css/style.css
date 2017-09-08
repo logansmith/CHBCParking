@@ -1,5 +1,5 @@
 html,body {
-	background-color: gray;
+	background-color: gray !important;
 }
 *{
 	margin: 0px;
@@ -76,6 +76,7 @@ html,body {
 	margin: 0.5rem;
 	text-align: center;
 	cursor: pointer;
+	font-size: 15px
 }
 .createnote {
 	width: 50%;
@@ -84,6 +85,9 @@ html,body {
 	margin-left: auto;
 }
 .createnote textarea {
+	width: 100%;
+}
+.note div {
 	width: 100%;
 }
 /* The Modal (background) */

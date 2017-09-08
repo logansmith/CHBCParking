@@ -44,17 +44,13 @@ def random_string(length=16):
 
 def get_file_id(id):
 	file_id = ''
-	print('id: ',str(id))
 	notes= glob.glob('PythonWebSite/notes/*.txt')
 	for note in notes:
 		with open(note) as file:
-			test = file.readline(2);
-			print('test:',test)
-			if test==id:
-				print('in the if state:')
+			parkid = file.readline(2).strip('\n');
+			if parkid==id:
 				file_id= note
 		file.close();
-		print('filid',file_id)
 	return file_id
 
 

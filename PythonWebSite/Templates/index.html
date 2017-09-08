@@ -1,13 +1,52 @@
 {% extends 'layout.html' %}
 
 {%block content%}
-<span class="notelist">
-	{%for j in range(0,5)%}
-	<div>
-		{%for i in range(j*3,j*3+3)%}
-		<div onclick="loadmodal({{i}})" class='note'>
+	<span class="notelist">
+		{%for j in range(0,5)%}
+		<div>
+			{%for i in range(j*3,j*3+3)%}
+			<div onclick="loadmodal({{i}})" class='note'>
+				{%for note in notes%}
+				{%if i == note.spotnum|int%}
+				<table>
+					<tr>
+						<th>Parking ID</th>
+					</tr>
+					<tr>
+						<td>{{note.spotnum}}</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Liscense Plate</th>
+					</tr>
+					<tr>
+						<td id='lnum{{i}}'>{{note.lnum}}</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Phone Number</th>
+					</tr>
+					<tr>
+						<td id='pnum{{i}}'>{{note.pnum}}</td>
+					</tr>
+				</table>
+				{%endif%}
+			{%endfor%}
+			</div>
+			{%endfor%}
+		</div>
+		{%endfor%}
+	</span>
+
+	<div class="notelistright">
+		{%for i in range(23,33)%}
+		<div onclick="loadmodal({{i}})" class='noteright'>
 			{%for note in notes%}
-			{%if i == note.spotnum|int%}
+		{%if i == note.spotnum|int%}
 			<table>
 				<tr>
 					<th>Parking ID</th>
@@ -22,7 +61,7 @@
 					<th>Liscense Plate</th>
 				</tr>
 				<tr>
-					<td>{{note.lnum}}</td>
+					<td id='lnum{{i}}'>{{note.lnum}}</td>
 				</tr>
 				<tr>
 					<td></td>
@@ -31,52 +70,15 @@
 					<th>Phone Number</th>
 				</tr>
 				<tr>
-					<td>{{note.pnum}}</td>
+					<td id='pnum{{i}}'>{{note.pnum}}</td>
 				</tr>
 			</table>
 			{%endif%}
-			{%endfor%}
+		{%endfor%}
 		</div>
 		{%endfor%}
 	</div>
-	{%endfor%}
-</span>
-<div class="notelistright">
-	{%for i in range(23,33)%}
-	<div onclick="loadmodal({{i}})" class='noteright'>
-		{%for note in notes%}
-		{%if i == note.spotnum|int%}
-		<table>
-			<tr>
-				<th>Parking ID</th>
-			</tr>
-			<tr>
-				<td>{{note.spotnum }}</td>
-			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<th>Liscense Plate</th>
-			</tr>
-			<tr>
-				<td>{{note.lnum }}</td>
-			</tr>
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<th>Phone Number</th>
-			</tr>
-			<tr>
-				<td>{{note.pnum}}</td>
-			</tr>
-		</table>
-		{%endif%}
-		{%endfor%}
-	</div>
-	{%endfor%}
-</div>
+
 <div class="notelist">
 	{%for j in range(8,12)%}
 	<div>
@@ -89,7 +91,7 @@
 					<th>Parking ID</th>
 				</tr>
 				<tr>
-					<td>{{note.spotnum }}</td>
+					<td>{{note.spotnum}}</td>
 				</tr>
 				<tr>
 					<td></td>
@@ -98,7 +100,7 @@
 					<th>Liscense Plate</th>
 				</tr>
 				<tr>
-					<td>{{note.lnum }}</td>
+					<td id='lnum{{i-1}}'>{{note.lnum}}</td>
 				</tr>
 				<tr>
 					<td></td>
@@ -107,7 +109,7 @@
 					<th>Phone Number</th>
 				</tr>
 				<tr>
-					<td>{{note.pnum}}</td>
+					<td id='pnum{{i-1}}'>{{note.pnum}}</td>
 				</tr>
 			</table>
 			{%endif%}
@@ -121,10 +123,10 @@
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
-	<!-- Modal content -->
-	<div class="modal-content">
-		<span class="close">&times;</span>
-		<form method="POST" class='createnote'>
+<!-- Modal content -->
+<div class="modal-content">
+	<span class="close">&times;</span>
+	<form method="POST" class='createnote'>
 		<table>
 			<tr>
 				<td>
@@ -132,36 +134,31 @@
 				</td>
 				<td>
 					<input id='parkingid' name='parkingid' readonly="true"></input>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="notetext">Liscense plate</label>
-				</td>
-				<td>
-					<input type="text" name="notetext" id="notetext">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label for="phonenumber">Phone Number</label>
-				</td>
-				<td>
-					<input type="text" name="phonenumber" id="phonenumber">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					
-				</td>
-				<td>
-					<input class='submitbutton' type="submit" name="createnote" value="Save">
-				</td>
-			</tr>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="notetext">Liscense plate</label>
+			</td>
+			<td>
+				<input type="text" name="notetext" id="notetext"></td>
+		</tr>
+		<tr>
+			<td>
+				<label for="phonenumber">Phone Number</label>
+			</td>
+			<td>
+				<input type="text" name="phonenumber" id="phonenumber"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<input class='submitbutton' type="submit" name="createnote" value="Save"></td>
+		</tr>
 
-		</table>		
-		
-		</form>
+	</table>
+
+</form>
 </div>
 
 </div>

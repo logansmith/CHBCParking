@@ -26,19 +26,17 @@ window.onload = function() {
 }
 
 function loadmodal(id) {
-	var pnum = ''
-	 var lnum = ''
-	/*for (var i = 0; i <= notes.length; i++) {
-	 	if(notes[i].parkingid==id)
-	 	{
-	 		 var lnum = note.lnum
-	 		 var pnum = note.pnum
-	 	}
-
-	 }*/
 	 
+	 if(document.getElementById('lnum'+id) !=null &&
+	 	 document.getElementById('pnum' +id) != null){
+			var lnum=document.getElementById('lnum'+id).innerHTML
+	 		var pnum= document.getElementById('pnum' +id).innerHTML
+	 		document.getElementById('notetext').value=lnum;
+	 		document.getElementById('phonenumber').value=pnum;
+	 }
+	 
+
 	 document.getElementById('parkingid').value = id;
-	 document.getElementById('notetext').value = lnum;
 	 modal.style.display = "block";
 }
 
